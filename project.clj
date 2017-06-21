@@ -40,5 +40,5 @@
   :clean-targets ^{:protect false} ["resources/public/js"]
 
   :cljsbuild {:builds {:dev {:source-paths ["src/banking/client"]
-                             :compiler {:output-dir "resources/public/js"
-                                        :output-to "resources/public/js/banking-app.js"}}}})
+                             :compiler {:output-dir "resources/public/js/dev"
+                                        :output-to "resources/public/js/dev/banking-app.js"}}}})
