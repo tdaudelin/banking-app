@@ -26,14 +26,15 @@
                    :cljsbuild
                    {:builds {:dev {:figwheel {:on-jsload "banking.client.core/reload-hook"}
                                    :compiler {:main "banking.client.core"
-                                              :asset-path "js"
+                                              :asset-path "js/dev"
                                               :optimizations :none
                                               :source-map true
                                               :source-map-timestamp true}}}}}
              :test [{:dependencies []}]
              :prod {:dependencies []}
              :uberjar [:prod
-                       {:aot :all}]}
+                       {:aot :all
+                        :prep-tasks ["compile" ["cljsbuild" "once" "release"]]}]}
 
   :target-path "target/%s"
 
@@ -41,4 +42,12 @@
 
   :cljsbuild {:builds {:dev {:source-paths ["src/banking/client"]
                              :compiler {:output-dir "resources/public/js/dev"
-                                        :output-to "resources/public/js/dev/banking-app.js"}}}})
+                                        :output-to "resources/public/js/dev/banking-app.js"}}
+
+                       :release {:source-paths ["src/banking/client"]
+                                 :compiler {:asset-path "/js/prod"
+                                            :optimizations :advanced
+                                            :pretty-print false
+                                            :verbose true
+                                            :output-dir "resources/public/js/prod"
+                                            :output-to "resources/public/js/prod/banking-app.js"}}}})
