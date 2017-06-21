@@ -4,7 +4,7 @@
             [ring.util.response :as response]))
 
 (defroutes app-routes
-  (GET "/" [] (-> (response/resource-response "public/index.html")
+  (GET "/" [] (-> (response/resource-response "public/banking-app.html")
                   (response/content-type "text/html"))))
 
 (defroutes resource-routes
