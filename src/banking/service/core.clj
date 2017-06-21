@@ -2,7 +2,7 @@
   (:gen-class)
   (:require [mount.core :as mount :refer [defstate]]
             [org.httpkit.server :as http-kit]
-            [banking.service.compojure-api.handler :as handler]))
+            [banking.service.handler :as handler]))
 
 (defn start-server!
   [port]
