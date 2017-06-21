@@ -3,6 +3,8 @@
                  [org.clojure/clojure "1.8.0"]
                  [compojure "1.6.0"]
                  [ring/ring-defaults "0.3.0"]
+                 [mount "0.1.11"]
+                 [http-kit "2.2.0"]
 
                  ;; client dependencies
                  [org.clojure/clojurescript "1.9.562"]
@@ -14,11 +16,9 @@
             [lein-doo "0.1.7"]
             [lein-ring "0.9.7"]]
 
-  :profiles {:dev {:dependencies [;; service
-                                  [javax.servlet/servlet-api "2.5"]
-                                  [ring/ring-mock "0.3.0"]
+  :main banking.service.core
 
-                                  ;; client
+  :profiles {:dev {:dependencies [;; client
                                   [figwheel-sidecar "0.5.10"]
                                   [com.cemerick/piggieback "0.2.2"]
                                   [org.clojure/tools.nrepl "0.2.10"]]
@@ -36,8 +36,6 @@
                        {:aot :all}]}
 
   :target-path "target/%s"
-
-  :ring {:handler banking.service.compojure-api.handler/app}
 
   :clean-targets ^{:protect false} ["resources/public/js"]
 
