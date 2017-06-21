@@ -24,12 +24,12 @@
                                   [org.clojure/tools.nrepl "0.2.10"]]
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
                    :cljsbuild
-                   {:builds {:client {:figwheel {:on-jsload "banking.client.core/reload-hook"}
-                                      :compiler {:main "banking.client.core"
-                                                 :asset-path "js"
-                                                 :optimizations :none
-                                                 :source-map true
-                                                 :source-map-timestamp true}}}}}
+                   {:builds {:dev {:figwheel {:on-jsload "banking.client.core/reload-hook"}
+                                   :compiler {:main "banking.client.core"
+                                              :asset-path "js"
+                                              :optimizations :none
+                                              :source-map true
+                                              :source-map-timestamp true}}}}}
              :test [{:dependencies []}]
              :prod {:dependencies []}
              :uberjar [:prod
@@ -39,6 +39,6 @@
 
   :clean-targets ^{:protect false} ["resources/public/js"]
 
-  :cljsbuild {:builds {:client {:source-paths ["src/banking/client"]
-                                :compiler {:output-dir "resources/public/js"
-                                           :output-to "resources/public/js/banking-app.js"}}}})
+  :cljsbuild {:builds {:dev {:source-paths ["src/banking/client"]
+                             :compiler {:output-dir "resources/public/js"
+                                        :output-to "resources/public/js/banking-app.js"}}}})
