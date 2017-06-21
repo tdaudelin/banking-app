@@ -13,8 +13,7 @@
 
   :plugins [[lein-cljsbuild "1.1.6"]
             [lein-figwheel "0.5.10"]
-            [lein-doo "0.1.7"]
-            [lein-ring "0.9.7"]]
+            [lein-doo "0.1.7"]]
 
   :main banking.service.core
 
