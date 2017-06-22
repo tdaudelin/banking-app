@@ -5,6 +5,7 @@
                  [ring/ring-defaults "0.3.0"]
                  [mount "0.1.11"]
                  [http-kit "2.2.0"]
+                 [environ "1.1.0"]
 
                  ;; client dependencies
                  [org.clojure/clojurescript "1.9.562"]
@@ -12,12 +13,14 @@
                  [re-frame "0.9.4"]]
 
   :plugins [[lein-cljsbuild "1.1.6"]
-            [lein-figwheel "0.5.10"]
-            [lein-doo "0.1.7"]]
+            [lein-doo "0.1.7"]
+            [lein-environ "1.1.0"]
+            [lein-figwheel "0.5.10"]]
 
   :main banking.service.core
 
-  :profiles {:dev {:dependencies [;; client
+  :profiles {:dev {:env {:asset-path "js/dev"}
+                   :dependencies [;; client
                                   [figwheel-sidecar "0.5.10"]
                                   [com.cemerick/piggieback "0.2.2"]
                                   [org.clojure/tools.nrepl "0.2.10"]]
@@ -29,8 +32,9 @@
                                               :optimizations :none
                                               :source-map true
                                               :source-map-timestamp true}}}}}
-             :test [{:dependencies []}]
-             :prod {:dependencies []}
+             :test {:dependencies []}
+             :prod {:env {:asset-path "js/prod"}
+                    :dependencies []}
              :uberjar [:prod
                        {:aot :all
                         :prep-tasks ["compile" ["cljsbuild" "once" "release"]]}]}
