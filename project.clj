@@ -10,7 +10,10 @@
                  ;; client dependencies
                  [org.clojure/clojurescript "1.9.562"]
                  [reagent "0.6.2"]
-                 [re-frame "0.9.4"]]
+                 [re-frame "0.9.4"]
+                 [binaryage/devtools "0.9.4"]
+                 [kibu/pushy "0.3.7"]
+                 [bidi "2.1.1"]]
 
   :plugins [[lein-cljsbuild "1.1.6"]
             [lein-doo "0.1.7"]
@@ -31,7 +34,11 @@
                                               :asset-path "js/dev"
                                               :optimizations :none
                                               :source-map true
-                                              :source-map-timestamp true}}}}}
+                                              :source-map-timestamp true
+                                              :preloads [devtools.preload]
+                                              :external-config
+                                              {:devtools/config {:features-to-install [:formatters :hints]
+                                                                 :print-config-overrides true}}}}}}}
              :test {:dependencies []}
              :prod {:env {:asset-path "js/prod"}
                     :dependencies []}
